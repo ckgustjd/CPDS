@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>다이렉트폰 :: 로그인/회원가입</title>
+    <link rel="icon" href="../../src/img/fav/IEsym_V7.svg" type="image/x-icon" sizes="64x64">
+</head>
+<style>
+    body {
+        margin: 0 auto;
+        padding: 0;
+        float: center;
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        /* overflow: scroll; */
+        position: static;
+        width: max-content;
+        min-width: max-content;
+        max-width: max-content;
+        /* display: flex; */
+    }
+
+    nav {
+        float: center;
+        text-align: center;
+        display: flex;
+    }
+
+    nav>a {
+        float: left;
+        text-decoration: none;
+        text-decoration-line: none;
+        color: black;
+        font-size: 16px;
+    }
+
+    nav>ul {
+        display: contents;
+    }
+
+    nav>ul>a {
+        float: left;
+        line-height: 100px;
+        height: 100px;
+        list-style-type: none;
+        text-decoration: none;
+        text-decoration-line: none;
+        width: 250px;
+        list-style: none;
+        /* color: white; */
+        /* background-color: #2d2d2d;  */
+        /* vertical-align: middle; */
+        display: block;
+        font-size: 16px;
+        font-weight: bold;
+        transition: all 0.5s ease;
+    }
+
+    nav>ul>a:link {
+        color: black;
+    }
+
+    nav>ul>a:visited {
+        color: black;
+    }
+
+    nav>ul>a:hover {
+        color: white;
+        background-color: black;
+    }
+
+    #navLogo {
+        float: center;
+        line-height: 100px;
+        height: 100px;
+        list-style-type: none;
+        text-decoration: none;
+        text-decoration-line: none;
+        width: 250px;
+        list-style: none;
+        display: block;
+        font-size: 16px;
+        font-weight: bold;
+        transition: all 0.5s ease;
+    }
+
+    #navLogo>a {
+        text-decoration: none;
+        text-decoration-line: none;
+        color: black;
+    }
+
+    #navLogo:hover {
+        color: white;
+        background-color: #1428a0;
+    }
+
+    #navLogo:link {
+        color: black;
+    }
+
+    #navLogo:visited {
+        color: black;
+    }
+
+    #navLogo>a>li>img {
+        /* Main Logo 위치 조정  */
+        margin-top: 10px;
+        height: 80px;
+    }
+
+    .intros>a {
+        text-decoration: none;
+        text-decoration-line: none;
+    }
+
+    .introsIntegratedTextMain {
+        font-size: 50px;
+        font-weight: bolder;
+    }
+
+    .introsIntegratedTextSub {
+        font-size: 16px;
+        font-weight: lighter;
+    }
+
+    .intro_ad1 {
+        align-content: center;
+        text-align: center;
+        background-color: black;
+        color: white;
+        width: 100%;
+        height: 750px;
+        margin-bottom: 25px;
+    }
+
+    .intro_ad2 {
+        align-content: center;
+        text-align: center;
+        background-color: white;
+        color: black;
+        width: 100%;
+        height: 750px;
+        margin-bottom: 25px;
+    }
+
+    .intro_ad3 {
+        align-content: center;
+        text-align: center;
+        background-color: #eecc31;
+        color: black;
+        width: 100%;
+        height: 750px;
+        margin-bottom: 25px;
+    }
+
+    .intro_ad1>img,
+    .intro_ad2>img,
+    .intro_ad3>img {
+        width: max-content;
+        height: 500px;
+    }
+
+    #secureLog2 {
+        text-align: center;
+        padding-top: 75px;
+        padding-bottom: 75px;
+        background: url("../../src/img/apple/not-iphone-img/R692.png") no-repeat center;
+        background-size: cover;
+        height: max-content;
+    }
+
+    /* LogonForm*/
+    *,
+    :after,
+    :before {
+        box-sizing: border-box
+    }
+
+    .clearfix:after,
+    .clearfix:before {
+        content: '';
+        display: table
+    }
+
+    .clearfix:after {
+        clear: both;
+        display: block
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none
+    }
+
+    .login-wrap {
+        width: 100%;
+        margin: auto;
+        max-width: 525px;
+        min-height: 670px;
+        position: relative;
+        background: url("../../src/img/fav/") no-repeat center;
+        box-shadow: 10px 10px 100px 1px rgba(0, 0, 0, 0.0);
+    }
+
+    .login-html {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        padding: 90px 70px 50px 70px;
+        background-color: rgba(255, 255, 255, 0.80);
+        box-shadow: 10px 10px 10px 1px rgba(0, 0, 0, 0.0);
+    }
+
+    .login-html .sign-in-htm,
+    .login-html .sign-up-htm {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        transform: rotateY(180deg);
+        backface-visibility: hidden;
+        transition: all .5s linear;
+    }
+
+    .login-html .sign-in,
+    .login-html .sign-up,
+    .login-form .group .check {
+        display: none;
+    }
+
+    .login-html .tab,
+    .login-form .group .label,
+    .login-form .group .button {
+        text-transform: uppercase;
+    }
+
+    .login-html .tab {
+        font-size: 22px;
+        margin-right: 15px;
+        padding-bottom: 5px;
+        margin: 0 15px 10px 0;
+        display: inline-block;
+        border-bottom: 2px solid transparent;
+    }
+
+    .login-html .sign-in:checked+.tab,
+    .login-html .sign-up:checked+.tab {
+        color: #1161ee;
+        border-color: #1161ee;
+        /* border-color: #0381fe; */
+    }
+
+    .login-form {
+        min-height: 345px;
+        position: relative;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+    }
+
+    .login-form .group {
+        margin-bottom: 15px;
+    }
+
+    .login-form .group .label,
+    .login-form .group .input,
+    .login-form .group .button {
+        width: 100%;
+        color: white;
+        display: block;
+        font-weight: bolder;
+    }
+
+    .login-form .group .input,
+    .login-form .group .button {
+        border: none;
+        padding: 15px 20px;
+        border-radius: 25px;
+        color: #000;
+        background: rgba(255, 255, 255, 0.75);
+    }
+
+    .login-form .group input[data-type="password"] {
+        -text-security: circle;
+        -webkit-text-security: circle;
+    }
+
+    .login-form .group .label {
+        color: #aaa;
+        font-size: 12px;
+    }
+
+    .login-form .group .button {
+        background: #0381fe;
+    }
+
+    .login-form .group label .icon {
+        width: 15px;
+        height: 15px;
+        border-radius: 2px;
+        position: relative;
+        display: inline-block;
+        background: rgba(255, 255, 255, .1);
+    }
+
+    .login-form .group label .icon:before,
+    .login-form .group label .icon:after {
+        content: '';
+        width: 10px;
+        height: 2px;
+        background: #fff;
+        position: absolute;
+        transition: all .2s ease-in-out 0s;
+    }
+
+    .login-form .group label .icon:before {
+        left: 3px;
+        width: 5px;
+        bottom: 6px;
+        transform: scale(0) rotate(0);
+    }
+
+    .login-form .group label .icon:after {
+        top: 6px;
+        right: 0;
+        transform: scale(0) rotate(0);
+    }
+
+    .login-form .group .check:checked+label {
+        color: #000;
+    }
+
+    .login-form .group .check:checked+label .icon {
+        background: #1161ee;
+    }
+
+    .login-form .group .check:checked+label .icon:before {
+        transform: scale(1) rotate(45deg);
+    }
+
+    .login-form .group .check:checked+label .icon:after {
+        transform: scale(1) rotate(-45deg);
+    }
+
+    .login-html .sign-in:checked+.tab+.sign-up+.tab+.login-form .sign-in-htm {
+        transform: rotate(0);
+    }
+
+    .login-html .sign-up:checked+.tab+.login-form .sign-up-htm {
+        transform: rotate(0);
+    }
+
+    .hr {
+        height: 2px;
+        margin: 60px 0 50px 0;
+        background: rgba(255, 255, 255, .2);
+    }
+
+    .foot-lnk {
+        text-align: center;
+    }
+    
+    #footer {
+        height: 30%;
+        border-top: 2px solid rgb(218, 218, 218);
+    }
+
+    #footer #footer_top {
+        height: 15%;
+        border-bottom: 1px solid rgb(241, 241, 241);
+    }
+
+    #footer #footer_top #footer_top_text {
+        text-align: center;
+        margin-top: 1%;
+        font-size: 10px;
+        color: rgb(93, 98, 101);
+    }
+
+    #footer #footer_mtop {
+        padding-top: 2%;
+        border-bottom: 1px solid rgb(232, 232, 232);
+        height: 40%;
+        margin-left: 15%;
+        margin-right: 20%;
+        display: flex;
+    }
+
+    #footer #footer_mtop #footer_mtop_1 {
+        width: 15%;
+        height: 100%;
+    }
+
+    #footer #footer_mtop #footer_mtop_2 {
+        margin-left: 2%;
+        width: 25%;
+        height: 100%;
+    }
+
+    #footer #footer_mtop #footer_mtop_3 {
+        margin-left: 2%;
+        width: 25%;
+        height: 100%;
+    }
+
+    #footer #footer_mtop #footer_mtop_4 {
+        margin-left: 10%;
+        float: right;
+        width: 20%;
+        height: 100%;
+    }
+
+    #footer #footer_mbot {
+        padding-top: 1%;
+        height: 20%;
+        margin-left: 15%;
+        margin-right: 20%;
+        display: flex;
+    }
+
+    #footer #footer_mbot #footer_mbot_1 {
+        width: 20%;
+    }
+
+    #footer #footer_mbot #footer_mbot_2 {
+        margin-left: 4%;
+        width: 20%;
+    }
+
+    #footer #footer_mbot #footer_mbot_3 {
+        margin-left: 4%;
+        width: 20%;
+    }
+
+    #footer #footer_mbot #footer_mbot_4 {
+        margin-left: 4%;
+        width: 20%;
+    }
+
+    #footer #footer_bot {
+        align-items: center;
+        background-color: rgb(51, 51, 51);
+        height: 32%;
+        display: flex;
+        color: rgb(131, 126, 128);
+        font-size: 10px;
+    }
+
+    #footer #footer_bot #footer_bot_text {
+        margin-left: 100px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    #logo {
+        margin-left: 700px;
+    }
+</style>
+<script>
+    // Right Click Restricted
+    document.oncontextmenu = function () { return false; }
+</script>
+
+<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+    <nav>
+        <ul>
+            <div id="navLogo">
+                <a href="../../index.html">
+                    <li><img src="../../src/img/logo/main.png" alt="메인 로고"></li>
+                </a>
+            </div>
+            <a href="../../src/htm/samsung.html">
+                <li>Galaxy</li>
+            </a>
+            <a href="../../src/htm/apple.html">
+                <li>iPhone</li>
+            </a>
+            <a href="../../src/htm/etcProd.html">
+                <li>기타 휴대폰</li>
+            </a>
+            <a href="../../src/htm/cart.html">
+                <li>장바구니</li>
+            </a>
+            <a href="../../src/htm/logon.html">
+                <li>로그인 / 회원가입</li>
+            </a>
+            <a href="../../src/htm/help.html">
+                <li>고객지원</li>
+            </a>
+        </ul>
+    </nav>
+    <hr>
+    <div id="secureLog2">
+        <div class="login-wrap">
+            <div class="login-html">
+                <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Log In</label>
+                <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+                <div class="login-form">
+                    <div class="sign-in-htm">
+                        <div class="group">
+                            <!-- <label for="user" class="label">ID / 이메일 / 휴대폰</label> -->
+                            <input id="user" type="text" class="input" placeholder="ID / 이메일 입력">
+                        </div>
+                        <div class="group">
+                            <!-- <label for="pass" class="label">비밀번호</label> -->
+                            <input id="pass" type="password" class="input" data-type="password" placeholder="비밀번호 입력">
+                        </div>
+                        <div class="group">
+                            <input id="check" type="checkbox" class="check" checked>
+                            <label for="check"><span class="icon"></span> 로그인 상태 유지</label>
+                        </div>
+                        <div class="group">
+                            <a href="../../index.html"><input type="submit" class="button" value="로그인"></a>
+                        </div>
+                        <div class="hr"></div>
+                        <div class="foot-lnk">
+                            <a href="../../src/htm/usrFind.html"><u>ID 또는 비밀번호 찾기</u></a>
+                        </div>
+                    </div>
+                    <div class="sign-up-htm">
+                        <div class="group">
+                            <!-- <label for="user" class="label">아이디</label> -->
+                            <input id="user" type="text" class="input" placeholder="아이디">
+                        </div>
+                        <div class="group">
+                            <!-- <label for="pass" class="label">비밀번호 입력</label> -->
+                            <input id="pass" type="password" class="input" data-type="password" placeholder="비밀번호">
+                        </div>
+                        <div class="group">
+                            <!-- <label for="pass" class="label">비밀번호 재입력</label> -->
+                            <input id="pass" type="password" class="input" data-type="password" placeholder="비밀번호 재입력">
+                        </div>
+                        <div class="group">
+                            <!-- <label for="pass" class="label">이메일 주소</label> -->
+                            <input id="pass" type="text" class="input" placeholder="이메일 주소">
+                        </div>
+                        <div class="group">
+                            <a href="../../index.html"><input type="submit" class="button" value="확인"></a>
+                        </div>
+                        <div class="hr"></div>
+                        <div class="foot-lnk">
+                            <label for="tab-1"><a href="../../src/htm/logon.html"><u>이미 가입하셨습니까? 여기에서 로그인하세요.</u></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <footer>
+        <div id="footer">
+            <div id="footer_bot">
+                <div id="footer_bot_text">
+                    사이트 내 판매되는 상품 중에는 본 사이트에 입점한 판매자가 판매하는 상품이 포함되어 있습니다.<br>
+                    해당 상품의 경우 회사는 통신판매중개자이며 통신판매의 당사자가 아닙니다.<br>
+                    다이렉트폰은 소비자 권리 보호와 안전한 거래를 위해 신뢰관리센터를 운영하고 있으며, 관련 분쟁이 발생할 경우 별도의 분쟁 처리절차에 의거 분쟁이 처리됩니다.<br>
+                    제품에 대한 상담이 필요하시면 다이렉트폰 고객상담실 051-395-8282로 전화주세요. 신뢰관리센터는 내선 9번입니다. (상담가능시간 평일 9:00~18:00)<br>
+                    Copyright ⓒ DirectPhone Corp. 2024 All Rights Reserved.
+                </div>
+                <div id="logo">
+                    <a href="#"><img src="../../src/img/logo/sns.png" width="40%"></a>
+                </div>
+            </div>
+    </footer>
+</body>
+
+</html>
